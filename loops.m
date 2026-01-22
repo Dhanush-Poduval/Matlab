@@ -9,5 +9,14 @@ plot(fibonnaci_array,f(1:10));
 xlabel('values');
 ylabel('Fibbonaci numbers');
 title("Fibonnaci Sequence");
+num=randi(100);
+if num>60
+    sz="Low";
+elseif num <10
+    sz="Very low";
+else
+    sz="Mid";
+end
+disp(sz);
 
  
