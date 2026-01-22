@@ -1,0 +1,11 @@
+N=100;
+f(1)=1;
+f(2)=1;
+fibonnaci_array=[1,2,3,4,5,6,7,8,9,10];
+for n =3:N
+    f(n)=f(n-1)+f(n-2);
+end
+xlabel('values');
+ylabel('Fibbonaci numbers');
+plot(f(1:10),fibonnaci_array);
+ 
