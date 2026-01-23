@@ -1,0 +1,26 @@
+body1=rigidBody('body1');
+jnt1=rigidBodyJoint('jnt1','revolute');
+jnt1.HomePosition=pi/4;
+tform=trvec2tform([0.25, 0.25, 0]);
+setFixedTransform(jnt1,tform);
+body1.Joint=jnt1;
+robot=rigidBodyTree;
+addVisual(body1,'Cylinder',[0.03,0.3]);
+addBody(robot,body1,'base');
+body2=rigidBody('body2');
+jnt2=rigidBodyJoint('jnt2','revolute');
+jnt2.HomePosition=pi/6;
+tform2=trvec2tform([1,0,0]);
+setFixedTransform(jnt2,tform2);
+addVisual(body2,'Cylinder',[0.03,0.3]);
+body2.Joint=jnt2;
+addBody(robot,body2,'body1');
+body3=rigidBody('body3');
+jnt3=rigidBodyJoint('jnt3','revolute');
+jnt3.HomePosition=pi/4;
+tform3=trvec2tform([0.6, -0.1, 0])*eul2tform([-pi/2, 0, 0]);
+setFixedTransform(jnt3,tform3);
+body3.Joint=jnt3;
+addVisual(body3,'Cylinder',[0.03 0.3]);
+addBody(robot,body3,'body2')
+show(robot,"Frames",'on');
