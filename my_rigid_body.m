@@ -22,5 +22,13 @@ tform3=trvec2tform([0.6, -0.1, 0])*eul2tform([-pi/2, 0, 0]);
 setFixedTransform(jnt3,tform3);
 body3.Joint=jnt3;
 addVisual(body3,'Cylinder',[0.03 0.3]);
-addBody(robot,body3,'body2')
+body4=rigidBody('body4');
+jnt4=rigidBodyJoint('jnt4','revolute');
+%jnt4.HomePosition=pi/6;
+tform4=trvec2tform([1, 0, 0]);
+setFixedTransform(jnt4,tform4);
+addVisual(body4,'Cylinder',[0.03 0.3]);
+body4.Joint=jnt4;
+addBody(robot,body3,'body2');
+addBody(robot,body4,'body3');
 show(robot,"Frames",'on');
