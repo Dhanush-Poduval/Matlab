@@ -40,3 +40,8 @@ addBody(robot,body3,'body2');
 addBody(robot,body4,'body3');
 addBody(robot,body5,'body3');
 show(robot,"Frames",'on');
+config=randomConfiguration(robot);
+tform=getTransform(robot,config,'body5','base');
+disp(tform);
+disp(config);
+showdetails(robot);
