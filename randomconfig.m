@@ -5,4 +5,6 @@ tform =getTransform(robot,config,'tool0','base');
 config(3).JointPosition=pi/2;
 disp(config);
 disp(tform);
+holy=robot.Bodies{2}.Joint;
+disp(holy);
 show(robot,randomConfiguration(robot));
