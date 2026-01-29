@@ -41,7 +41,7 @@ addBody(robot,body4,'body3');
 addBody(robot,body5,'body3');
 config=homeConfiguration(robot);
 tform=getTransform(robot,config,'body5','base');
-config(2).JointPosition=pi/2;
+%config(1).JointPosition=pi/2;
 disp(tform);
 disp(config);
 show(robot,config);
