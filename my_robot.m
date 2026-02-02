@@ -1,8 +1,18 @@
+L1=0.3;
+L2=0.3;
+EE=0.05;
 body1=rigidBody('Body1');
 jnt1=rigidBodyJoint('jnt1','revolute');
 setFixedTransform(jnt1,trvec2tform([0 0 0]));
 jnt1.JointAxis=[0 0 1];
+addVisual(body1,'Cylinder',[0.03 0.3]);
 body1.Joint=jnt1;
 robot=rigidBodyTree;
 addBody(robot,body1,'base');
+body2=rigidBody('body2');
+jnt2=rigidBodyJoint('jnt2','revolute');
+setFixedTransform(jnt2,trvec2tform([0 1 0]))
+addVisual(body2,'Cylinder',[0.03 0.3])
+body2.Joint=jnt2;
+addBody(robot,body2,'Body1');
 show(robot);
