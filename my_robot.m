@@ -11,20 +11,21 @@ robot=rigidBodyTree;
 addBody(robot,body1,'base');
 body2=rigidBody('body2');
 jnt2=rigidBodyJoint('jnt2','revolute');
-setFixedTransform(jnt2,trvec2tform([0 1 0]))
+setFixedTransform(jnt2,trvec2tform([L1 0 0]))
 addVisual(body2,'Cylinder',[0.03 0.3])
 body2.Joint=jnt2;
 addBody(robot,body2,'Body1');
 body3=rigidBody('tool_tip');
-jnt3=rigidBodyJoint('jnt3','revolute');
-setFixedTransform(jnt3,trvec2tform([0 1 0]));
-jnt3.JointAxis=[0 0 1];
+jnt3=rigidBodyJoint('jnt3','fixed');
+setFixedTransform(jnt3,trvec2tform([L2 0.05 0]));
+%jnt3.JointAxis=[0 0 1];
 addVisual(body3,'Cylinder',[0.03 0.3]);
 body3.Joint=jnt3;
 addBody(robot,body3,'body2');
 showdetails(robot);
-%config=homeConfiguration(robot);
-config=randomConfiguration(robot);
-%config(2).JointPosition=pi/2;
+config=homeConfiguration(robot);
+%config=randomConfiguration(robot);
+config(1).JointPosition=pi/2;
+config(2).JointPosition=pi/6;
 disp(config);
 show(robot ,config);
