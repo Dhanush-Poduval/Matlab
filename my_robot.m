@@ -15,4 +15,11 @@ setFixedTransform(jnt2,trvec2tform([0 1 0]))
 addVisual(body2,'Cylinder',[0.03 0.3])
 body2.Joint=jnt2;
 addBody(robot,body2,'Body1');
+body3=rigidBody('tool_tip');
+jnt3=rigidBodyJoint('jnt3','revolute');
+setFixedTransform(jnt3,trvec2tform([0 1 0]));
+jnt3.JointAxis=[0 0 1];
+addVisual(body3,'Cylinder',[0.03 0.3]);
+body3.Joint=jnt3;
+addBody(robot,body3,'body2');
 show(robot);
