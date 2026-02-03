@@ -17,7 +17,7 @@ body2.Joint=jnt2;
 addBody(robot,body2,'Body1');
 body3=rigidBody('tool_tip');
 jnt3=rigidBodyJoint('jnt3','fixed');
-setFixedTransform(jnt3,trvec2tform([L2 0.05 0]));
+setFixedTransform(jnt3,trvec2tform([L2+EE 0 0]));
 %jnt3.JointAxis=[0 0 1];
 addVisual(body3,'Cylinder',[0.03 0.3]);
 body3.Joint=jnt3;

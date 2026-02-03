@@ -1,0 +1,6 @@
+atlas=loadrobot("atlas");
+showdetails(atlas);
+config=homeConfiguration(atlas);
+config(7).JointPosition=pi/2;
+disp(config);
+show(atlas,config);
