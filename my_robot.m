@@ -30,5 +30,9 @@ config=homeConfiguration(robot);
 config(1).JointPosition=q1;
 config(2).JointPosition=q2;
 disp(config);
-
+%This is Forward kinematics in matlab
+t=getTransform(robot,config,"tool_tip");
+disp(t);
+pos=tform2trvec(t);
+disp(pos);
 show(robot ,config);
