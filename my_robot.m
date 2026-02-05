@@ -14,6 +14,7 @@ jnt2=rigidBodyJoint('jnt2','revolute');
 setFixedTransform(jnt2,trvec2tform([L1 0 0]))
 addVisual(body2,'Cylinder',[0.03 0.3])
 body2.Joint=jnt2;
+jnt2.JointAxis=[0 0 1];
 addBody(robot,body2,'Body1');
 body3=rigidBody('tool_tip');
 jnt3=rigidBodyJoint('jnt3','fixed');
@@ -21,8 +22,8 @@ setFixedTransform(jnt3,trvec2tform([L2+EE 0 0]));
 %jnt3.JointAxis=[0 0 1];
 addVisual(body3,'Cylinder',[0.03 0.3]);
 body3.Joint=jnt3;
-q1=pi/4;
-q2=pi/6;
+q1=pi;
+q2=pi/3;
 addBody(robot,body3,'body2');
 showdetails(robot);
 config=homeConfiguration(robot);
@@ -39,8 +40,18 @@ x_a = L1*cos(q1) + (L2+EE)*cos(q1+q2);
 y_a = L1*sin(q1) + (L2+EE)*sin(q1+q2);
 disp([x_a ,y_a]);
 disp([x_m ,y_m]);
-%isp
-%disp(t);
 pos=tform2trvec(t);
 disp(pos);
-show(robot ,config);
+s=show(robot ,config);
+hold(s,'on');
+
+%circle formation for later ik
+center_x=0;
+center_y=0;
+r=1;
+theta=linspace(0,2*pi,500);
+x=center_x+r*cos(theta);
+y=center_y+r*sin(theta);
+plot(x,y,'b','LineWidth',2)
+axis(s,'equal')
+grid (s,'on')
