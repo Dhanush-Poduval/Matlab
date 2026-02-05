@@ -31,8 +31,16 @@ config(1).JointPosition=q1;
 config(2).JointPosition=q2;
 disp(config);
 %This is Forward kinematics in matlab
-t=getTransform(robot,config,"tool_tip");
-disp(t);
+t=getTransform(robot,config,"tool_tip","base");
+x_m=t(1,4);
+y_m=t(2,4);
+%analytical fk
+x_a = L1*cos(q1) + (L2+EE)*cos(q1+q2);
+y_a = L1*sin(q1) + (L2+EE)*sin(q1+q2);
+disp([x_a ,y_a]);
+disp([x_m ,y_m]);
+%isp
+%disp(t);
 pos=tform2trvec(t);
 disp(pos);
 show(robot ,config);
