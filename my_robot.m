@@ -21,11 +21,14 @@ setFixedTransform(jnt3,trvec2tform([L2+EE 0 0]));
 %jnt3.JointAxis=[0 0 1];
 addVisual(body3,'Cylinder',[0.03 0.3]);
 body3.Joint=jnt3;
+q1=pi/4;
+q2=pi/6;
 addBody(robot,body3,'body2');
 showdetails(robot);
 config=homeConfiguration(robot);
 %config=randomConfiguration(robot);
-config(1).JointPosition=pi/2;
-config(2).JointPosition=pi/6;
+config(1).JointPosition=q1;
+config(2).JointPosition=q2;
 disp(config);
+
 show(robot ,config);
