@@ -68,11 +68,17 @@ disp(b);
 
 %for like animating the movement
 figure
-show(robot,q_arr(400,:))
 view(2);
 ax=gca;
 ax.Projection='orthographic';
 hold on;
 plot(r_points(:,1),r_points(:,2));
+overall_frames=size(q_arr,1);
 %axis([-0.1 0.7 -0.3 0.5 -0.2 0.2])
+%animate da ting
+for i=1:overall_frames
+    show(robot,q_arr(i,:),'PreservePlot',false,'FastUpdate',true);
+    drawnow;
+end
+
 
