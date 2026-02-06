@@ -52,6 +52,17 @@ r=1;
 theta=linspace(0,2*pi,500);
 x=center_x+r*cos(theta);
 y=center_y+r*sin(theta);
+for i=1:length(x)
+    points=[x(1,i),y(1,i)];
+    disp(points);
+end
 plot(x,y,'b','LineWidth',2)
 axis(s,'equal')
 grid (s,'on')
+%the ik part using normal inverseKinematics function as dont need multiple
+%constraints
+q0=homeConfiguration(robot);
+ik=inverseKinematics('RigidBodyTree',robot);
+weights=[0,0,0,1,1,0];
+endEffector="tool_tip";
+q_initial=q0;
