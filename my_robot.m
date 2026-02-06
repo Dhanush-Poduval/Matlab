@@ -18,7 +18,7 @@ jnt2.JointAxis=[0 0 1];
 addBody(robot,body2,'Body1');
 body3=rigidBody('tool_tip');
 jnt3=rigidBodyJoint('jnt3','fixed');
-setFixedTransform(jnt3,trvec2tform([L2+EE 0 0]));
+setFixedTransform(jnt3,trvec2tform([L2 0 0]));
 %jnt3.JointAxis=[0 0 1];
 %addVisual(body3,'Cylinder',[0.03 0.3]);
 body3.Joint=jnt3;
@@ -28,24 +28,14 @@ addBody(robot,body3,'body2');
 showdetails(robot);
 config=homeConfiguration(robot);
 %config=randomConfiguration(robot);
-config(1).JointPosition=q1;
-config(2).JointPosition=q2;
+
 disp(config);
-%This is Forward kinematics in matlab
-t=getTransform(robot,config,"tool_tip","base");
-x_m=t(1,4);
-y_m=t(2,4);
-%analytical fk
-x_a = L1*cos(q1) + (L2+EE)*cos(q1+q2);
-y_a = L1*sin(q1) + (L2+EE)*sin(q1+q2);
-disp([x_a ,y_a]);
-disp([x_m ,y_m]);
-pos=tform2trvec(t);
-disp(pos);
 %s=show(robot ,config);
 %hold(s,'on');
 
 %circle formation for later ik
+t = (0:0.2:10)';
+count = length(t);
 center_x=0.3;
 center_y=0.1;
 r=0.15;
@@ -59,24 +49,26 @@ disp(size(r_points));
 %axis(s,'equal')
 %grid (s,'on')
 %the ik part using normal inverseKinematics function as dont need multiple
+
 %constraints
 q0=homeConfiguration(robot);
 ik=inverseKinematics('RigidBodyTree',robot);
 weights=[0,0,0,1,1,0];
 endEffector='tool_tip';
 q_initial=q0;
-for i=1:10
+num_points=size(r_points,1);
+for i=1:num_points
     point=r_points(i,:);
     
     [a,b]=ik(endEffector,trvec2tform(point),weights,q_initial);
-    ik_arr(i,:)=a;
-    q_initial=ik_var;
+    q_arr(i,:)=a;
+    q_initial=a;
 end
 disp(b);
 
 %for like animating the movement
 figure
-show(robot,ik_arr(210,:))
+show(robot,q_arr(400,:))
 view(2);
 ax=gca;
 ax.Projection='orthographic';
