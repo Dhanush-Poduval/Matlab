@@ -22,8 +22,8 @@ setFixedTransform(jnt3,trvec2tform([L2+EE 0 0]));
 %jnt3.JointAxis=[0 0 1];
 addVisual(body3,'Cylinder',[0.03 0.3]);
 body3.Joint=jnt3;
-q1=pi;
-q2=pi/3;
+q1=pi/4;
+q2=pi/6;
 addBody(robot,body3,'body2');
 showdetails(robot);
 config=homeConfiguration(robot);
@@ -46,16 +46,15 @@ s=show(robot ,config);
 hold(s,'on');
 
 %circle formation for later ik
-center_x=0;
-center_y=0;
-r=1;
+center_x=0.3;
+center_y=0.1;
+r=0.15;
 theta=linspace(0,2*pi,500);
 x=center_x+r*cos(theta);
 y=center_y+r*sin(theta);
-for i=1:length(x)
-    points=[x(1,i),y(1,i)];
-    disp(points);
-end
+points=[x;y;zeros(size(x))];
+r_points=points';
+disp(size(r_points));
 plot(x,y,'b','LineWidth',2)
 axis(s,'equal')
 grid (s,'on')
@@ -64,5 +63,13 @@ grid (s,'on')
 q0=homeConfiguration(robot);
 ik=inverseKinematics('RigidBodyTree',robot);
 weights=[0,0,0,1,1,0];
-endEffector="tool_tip";
+endEffector='tool_tip';
 q_initial=q0;
+for i=1:10
+    point=r_points(i,:);
+    
+    [a,b]=ik(endEffector,trvec2tform(point),weights,q_initial);
+    %ik_arr(i,:)=ik_var;
+    q_initial=ik_var;
+end
+disp(b);
