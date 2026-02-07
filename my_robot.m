@@ -63,9 +63,12 @@ for i=1:num_points
     [a,b]=ik(endEffector,trvec2tform(point),weights,q_initial);
     q_arr(i,:)=a;
     q_initial=a;
+    theta_array(i,:)=[a.JointPosition];
+
 end
 disp(b);
-
+disp(theta_array)
+disp(size(theta_array))
 %for like animating the movement
 figure
 view(2);
