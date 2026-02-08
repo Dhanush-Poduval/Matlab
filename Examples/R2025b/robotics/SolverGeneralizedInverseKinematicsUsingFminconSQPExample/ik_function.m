@@ -6,15 +6,16 @@ arguments
     q0 (1,2) double
     scalar_size (1,1) int16
 end
+
     b=robotBuildforCodegen();
     ik=inverseKinematics('RigidBodyTree',b);
-    x=zeros(size(points));
-    y=zeros(size(points));
+    x=zeros(scalar_size,2);
+    y=zeros(scalar_size,2);
     for i=1:scalar_size
         point=points(i,:);
         [a0,~]=ik(endEffector,trvec2tform(point),weights,q0);
         x(i,:)=a0;
         q0=a0;
-        y(i,:)=[a0.JointPosition];
+        y(i,:)=a0;
     end
 
