@@ -7,4 +7,5 @@ config(3).JointPosition=pi/2;
 show(atlas,config);
 x=5;
 y=10;
-first_funfile(x,y);
+a=first_funfile(x,y);
+disp(a);
