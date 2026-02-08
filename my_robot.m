@@ -57,7 +57,9 @@ weights=[0,0,0,1,1,0];
 endEffector='tool_tip';
 q_initial=q0;
 num_points=size(r_points,1);
-for i=1:num_points
+[q_arr,theta_array]=ik_function(robot,endEffector,weights,r_points,q_initial,num_points);
+%{
+   for i=1:num_points
     point=r_points(i,:);
     
     [a,b]=ik(endEffector,trvec2tform(point),weights,q_initial);
@@ -66,7 +68,8 @@ for i=1:num_points
     theta_array(i,:)=[a.JointPosition];
 
 end
-disp(b);
+%}
+%disp(b);
 disp(theta_array)
 disp(size(theta_array))
 %for like animating the movement
