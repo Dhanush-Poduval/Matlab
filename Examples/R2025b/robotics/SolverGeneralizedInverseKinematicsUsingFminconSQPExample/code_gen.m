@@ -1,11 +1,13 @@
+%{
 atlas=loadrobot("atlas");
 showdetails(atlas);
 config=homeConfiguration(atlas);
 config(7).JointPosition=pi/2;
 config(3).JointPosition=pi/2;
-%disp(config);
+disp(config);
 show(atlas,config);
 x=5;
 y=10;
 a=first_funfile(x,y);
-disp(a);
+%}
+
