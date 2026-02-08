@@ -7,7 +7,7 @@ setFixedTransform(jnt1,trvec2tform([0 0 0]));
 jnt1.JointAxis=[0 0 1];
 %addVisual(body1,'Cylinder',[0.03 0.3]);
 body1.Joint=jnt1;
-robot=rigidBodyTree;
+robot=rigidBodyTree("DataFormat","row");
 addBody(robot,body1,'base');
 body2=rigidBody('body2');
 jnt2=rigidBodyJoint('jnt2','revolute');
@@ -30,6 +30,7 @@ config=homeConfiguration(robot);
 %config=randomConfiguration(robot);
 
 disp(config);
+writeAsFunction(robot,'robotBuildforCodegen');
 %s=show(robot ,config);
 %hold(s,'on');
 
@@ -57,19 +58,21 @@ weights=[0,0,0,1,1,0];
 endEffector='tool_tip';
 q_initial=q0;
 num_points=size(r_points,1);
-[q_arr,theta_array]=ik_function(robot,endEffector,weights,r_points,q_initial,num_points);
+[q_arr,theta_array]=ik_function(endEffector,weights,r_points,q_initial,num_points);
 %{
-   for i=1:num_points
+q_arr=zeros(num_points,2);
+for i=1:num_points
     point=r_points(i,:);
     
     [a,b]=ik(endEffector,trvec2tform(point),weights,q_initial);
     q_arr(i,:)=a;
     q_initial=a;
-    theta_array(i,:)=[a.JointPosition];
+    theta_array(i,:)=[a];
 
 end
+
+disp(b);
 %}
-%disp(b);
 disp(theta_array)
 disp(size(theta_array))
 %for like animating the movement
