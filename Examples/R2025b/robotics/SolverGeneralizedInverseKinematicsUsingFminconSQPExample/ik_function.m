@@ -1,6 +1,7 @@
 function [x,y]=ik_function(endEffector , weights , points,q0 , scalar_size)%#codegen
+
 arguments
-    endEffector (1,64)char
+    endEffector (1,:) char
     weights (1,:) double
     points (1,:) double
     q0 (1,2) double
