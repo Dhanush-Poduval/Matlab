@@ -1,5 +1,5 @@
-function [x,y]=ik_function(endEffector , weights , points,q0 , scalar_size)%#codegen
-
+function [x,y]=ik_function(endEffector , weights , points,q0 , scalar_size)
+%{
 arguments
     endEffector (1,:) char
     weights (1,:) double
@@ -7,6 +7,7 @@ arguments
     q0 (1,2) double
     scalar_size (1,1) int16
 end
+%}
 
     b=robotBuildforCodegen();
     ik=inverseKinematics('RigidBodyTree',b);
