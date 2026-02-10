@@ -20,8 +20,12 @@ vector7=q0.vector7;
 %}
 %vector_q0=[vector1 vector2 vector3 vector4 vector5 vector6 vector7];
 %disp(vector_q0);
+
+current_pos=getTransform(robot,q0,endEffector);
+end_effecter_pos=current_pos(1:3,4);
+disp(end_effecter_pos);
 ik=inverseKinematics("RigidBodyTree",robot);
-weights=[0 0 0 1 1 1];
+weights=[1 1 1 1 1 1];
 [a,~]=ik(endEffector,trvec2tform(cup_position),weights,q0);
 t = linspace(0, 1, 50);
 qTrajectory = q0 + t' * (a-q0); 
@@ -30,10 +34,16 @@ figure
 hold on;
 axis equal;
 view(3);
+scatter3(0,0,1.3060,'filled','MarkerFaceColor','y');
 surf(x,y,z);
+grid on;
+show(robot,q0);
 for i=1:overall_frames
     show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true);
     plot(qTrajectory(i,:),'Color','r','LineStyle','--');
-    %disp(qTrajectory(i,:));
+    current_pos=getTransform(robot,qTrajectory(i,:),endEffector);
+    current_ee_pos=current_pos(1:3,4);
+    scatter3(current_ee_pos(1),current_ee_pos(2),current_ee_pos(3),'filled','MarkerFaceColor','y');
+    disp(current_ee_pos);
     drawnow;
 end
