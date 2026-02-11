@@ -1,4 +1,5 @@
 robot=loadrobot("kukaIiwa14","DataFormat","row");
+writeAsFunction(robot, "generalizedRobotforcodeGen");
 showdetails(robot);
 endEffector="iiwa_link_ee_kuka";
 cup_Height=0.2;
@@ -26,7 +27,8 @@ end_effecter_pos=current_pos(1:3,4);
 disp(end_effecter_pos);
 ik=inverseKinematics("RigidBodyTree",robot);
 weights=[1 1 1 1 1 1];
-[a,~]=ik(endEffector,trvec2tform(cup_position),weights,q0);
+[a,~]=path_taken_ik(q0,endEffector,cup_position);
+%[a,~]=ik(endEffector,trvec2tform(cup_position),weights,q0);
 t = linspace(0, 1, 50);
 qTrajectory = q0 + t' * (a-q0); 
 overall_frames=size(qTrajectory,1);
