@@ -15,6 +15,8 @@ y=y+0.2;
 z=z*0.4;
 addBody(robot,base,"base_link");
 config = homeConfiguration(robot);
+check_base=getTransform(robot,config,"base_link");
+disp(check_base);
 q0=config;
 ik=inverseKinematics("RigidBodyTree",robot);
 endEffector="grip";
@@ -23,6 +25,7 @@ weights=[1 1 1 1 1 1];
 disp(a);
 %config (6)=pi/4;
 disp(config);
+getTransform(robot,homeConfiguration(robot),"turntable","base_link")
 figure;
 ax=gca;
 ax.Projection="orthographic";
@@ -33,8 +36,9 @@ overall_frames=size(qTrajectory,1);
 surf(x,y,z);
 grid on;
 view(3);
+
 for i=1:overall_frames
-    show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true);
+    show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off");
     current_eepos=getTransform(robot,qTrajectory(i,:),"pitch");
     current_ee=current_eepos(1:3,4);
     scatter3(current_ee(1),current_ee(2),current_ee(3),'filled','y');
@@ -42,6 +46,7 @@ for i=1:overall_frames
     %disp(qTrajectory(i,:));
     drawnow;
 end
+
 
 %show(robot, config, "Frames","off", "PreservePlot", false);
 %show(robot,a,"PreservePlot",true);

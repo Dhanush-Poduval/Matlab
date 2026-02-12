@@ -4,8 +4,8 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="ARM YPR GRIPPER_7">
+
   <link name="worldb"/>
-    
     <joint name="world_joint" type="fixed">
       <parent link="worldb"/>
       <child link="base_link"/>
@@ -16,7 +16,7 @@
     name="base_link">
     <inertial>
       <origin
-        xyz="1.12169088699127 -0.121140693558929 -0.213529355221054"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <mass
         value="4.50779680589233" />
@@ -96,7 +96,7 @@
     name="turntable_joint"
     type="revolute">
     <origin
-      xyz="1.35 -0.216 -0.31116"
+      xyz="1.35 -0.216 -0.3112"
       rpy="1.5708 -1.1533 3.1416" />
     <parent
       link="base_link" />
