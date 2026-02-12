@@ -28,6 +28,7 @@
         iyz="0.00166823235851846"
         izz="0.0144138530523192" />
     </inertial>
+<!--
     <visual>
       <origin
         xyz="0 0 0"
@@ -51,6 +52,7 @@
           filename="../meshes/base_link.STL" />
       </geometry>
     </collision>
+-->
   </link>
   <link
     name="turntable">

@@ -23,10 +23,17 @@ weights=[1 1 1 1 1 1];
 disp(a);
 %config (6)=pi/4;
 disp(config);
+figure;
+ax=gca;
+ax.Projection="orthographic";
 hold on;
+
 surf(x,y,z);
 grid on;
 view(3);
 %show(robot, config, "Frames","off", "PreservePlot", false);
 show(robot,a,"PreservePlot",true);
+camlight;
+lighting gouraud;
+material metal;
 %camorbit(90,0);
