@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="ARM YPR GRIPPER_7">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="1.12169088699127 -0.213529355221054 0.121140693558929"
+        rpy="0 0 0" />
+      <mass
+        value="4.50779680589233" />
+      <inertia
+        ixx="0.0155744669511241"
+        ixy="-0.000921990975110573"
+        ixz="-0.000267312829592054"
+        iyy="0.0144138530523192"
+        iyz="-0.00166823235851846"
+        izz="0.0123110151558508" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="turntable">
+    <inertial>
+      <origin
+        xyz="0.105763980678447 -0.00089189198876527 -0.0260116131683339"
+        rpy="0 0 0" />
+      <mass
+        value="2.52870378509003" />
+      <inertia
+        ixx="0.00641134887101375"
+        ixy="0.000853146367351283"
+        ixz="-9.61006870504373E-06"
+        iyy="0.00486617833905661"
+        iyz="2.16935043543991E-05"
+        izz="0.00929271252291499" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/turntable.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/turntable.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turntable_joint"
+    type="fixed">
+    <origin
+      xyz="1.35000046806038 -0.216 -0.311161541452805"
+      rpy="1.5707963267949 -1.15332436277035 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="turntable" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="worm_pitch">
+    <inertial>
+      <origin
+        xyz="-0.00975815373258329 -0.119432998209327 0.138678111763345"
+        rpy="0 0 0" />
+      <mass
+        value="3.22088245146173" />
+      <inertia
+        ixx="0.0280751971325729"
+        ixy="-3.59522261294568E-08"
+        ixz="-5.70039309070446E-07"
+        iyy="0.0158829956773126"
+        iyz="0.0120530236922538"
+        izz="0.0134222737428974" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/worm_pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/worm_pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pitch1_joint"
+    type="fixed">
+    <origin
+      xyz="0.0735164068372525 0.077745638479509 -0.151720000000009"
+      rpy="1.5707963267949 0 0.417471964024542" />
+    <parent
+      link="turntable" />
+    <child
+      link="worm_pitch" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="pulley">
+    <inertial>
+      <origin
+        xyz="-0.0196065460523519 -0.019635619645173 -0.0321128890960278"
+        rpy="0 0 0" />
+      <mass
+        value="1.1765100986821" />
+      <inertia
+        ixx="0.0013481180306053"
+        ixy="-0.000524141829758074"
+        ixz="-1.45228373458589E-11"
+        iyy="0.0013502733799712"
+        iyz="-2.43390966102712E-11"
+        izz="0.00206338874473855" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/pulley.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/pulley.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pitch2_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0599999999999885 -0.289979355471976 0.310703996433991"
+      rpy="1.5707963267949 -1.37469687411002 -1.5707963267949" />
+    <parent
+      link="worm_pitch" />
+    <child
+      link="pulley" />
+    <axis
+      xyz="0.194845033127278 -0.980834039512103 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="pitch">
+    <inertial>
+      <origin
+        xyz="0.0522498739286487 0.0742869890543516 -4.31015914070798E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.408155013631044" />
+      <inertia
+        ixx="0.000242488546573638"
+        ixy="1.92181722690311E-08"
+        ixz="-7.90453575931434E-05"
+        iyy="0.000461066848921683"
+        iyz="-3.47212002193024E-09"
+        izz="0.000428372044285435" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ypr_pitch_joint"
+    type="fixed">
+    <origin
+      xyz="-0.190507127605395 -0.177675757893486 -0.112004491525251"
+      rpy="0.904678468556746 -1.5707963267949 0" />
+    <parent
+      link="pulley" />
+    <child
+      link="pitch" />
+    <axis
+      xyz="0 0.452902695109985 0.89155995242166" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="yaw">
+    <inertial>
+      <origin
+        xyz="0.0442487773112467 0.00778744467840287 0.0245830125770947"
+        rpy="0 0 0" />
+      <mass
+        value="0.408155014372176" />
+      <inertia
+        ixx="0.000242488546710915"
+        ixy="7.53609876499588E-05"
+        ixz="-2.38514248033736E-05"
+        iyy="0.000431355452785603"
+        iyz="9.41494767376666E-06"
+        izz="0.000458083440689525" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/yaw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/yaw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ypr_yaw_joint"
+    type="fixed">
+    <origin
+      xyz="0.00800109666249249 0.0485000000000009 0"
+      rpy="-1.26403231730027 0 0" />
+    <parent
+      link="pitch" />
+    <child
+      link="yaw" />
+    <axis
+      xyz="0.725299999999981 0.482581415280126 0.490969492459825" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="roll">
+    <inertial>
+      <origin
+        xyz="0.0102395892134093 0.0342291778328889 -0.0785773933031163"
+        rpy="0 0 0" />
+      <mass
+        value="0.830943621943882" />
+      <inertia
+        ixx="0.00114743076893464"
+        ixy="-0.000112985302134803"
+        ixz="1.50857764313845E-05"
+        iyy="0.000802760516824962"
+        iyz="5.40762194722463E-05"
+        izz="0.000737638625090162" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ypr_roll_joint"
+    type="fixed">
+    <origin
+      xyz="-0.018789 0.059671 0.119"
+      rpy="-1.6847 0.57798 1.2015" />
+    <parent
+      link="yaw" />
+    <child
+      link="roll" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="grip">
+    <inertial>
+      <origin
+        xyz="-0.0180313760559689 0.019311990294276 0.000940365992438297"
+        rpy="0 0 0" />
+      <mass
+        value="0.134543517946272" />
+      <inertia
+        ixx="0.000103933868709755"
+        ixy="4.82164127122457E-05"
+        ixz="-1.53116119866975E-06"
+        iyy="9.73121491800792E-05"
+        iyz="1.6399064672535E-06"
+        izz="0.000126256855074672" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/grip.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ARM YPR GRIPPER_7/meshes/grip.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="gripper"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.13773"
+      rpy="0 0 2.1015" />
+    <parent
+      link="roll" />
+    <child
+      link="grip" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
