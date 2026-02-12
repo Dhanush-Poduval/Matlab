@@ -38,13 +38,20 @@ grid on;
 view(3);
 
 for i=1:overall_frames
-    show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off");
-    current_eepos=getTransform(robot,qTrajectory(i,:),"pitch");
-    current_ee=current_eepos(1:3,4);
-    scatter3(current_ee(1),current_ee(2),current_ee(3),'filled','y');
-    disp(current_ee);
-    %disp(qTrajectory(i,:));
-    drawnow;
+   
+    isColliding = checkCollision(robot,config,SkippedSelfCollisions="parent");
+    if isColliding
+         show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off",Collisions="on");
+    else
+        show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off");
+
+        current_eepos=getTransform(robot,qTrajectory(i,:),endEffector);
+        current_ee=current_eepos(1:3,4);
+        scatter3(current_ee(1),current_ee(2),current_ee(3),'filled','y');
+        disp(current_ee);
+        %disp(qTrajectory(i,:));
+        drawnow;
+    end
 end
 
 
