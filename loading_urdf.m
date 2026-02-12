@@ -8,10 +8,10 @@ tform = eul2tform([0 0 pi/2]);
 setFixedTransform(jnt,tform);
 base.Joint=jnt;
 cyllinder_radius=0.05;
-final_position=[1.6,0.6,0.2];
+final_position=[1.6,0.2,0.2];
 [x,y,z]=cylinder(cyllinder_radius);
 x=x+1.6;
-y=y+0.6;
+y=y+0.2;
 z=z*0.4;
 addBody(robot,base,"base_link");
 config = homeConfiguration(robot);
@@ -27,12 +27,24 @@ figure;
 ax=gca;
 ax.Projection="orthographic";
 hold on;
-
+t = linspace(0, 1, 100);
+qTrajectory = q0 + t' * (a-q0); 
+overall_frames=size(qTrajectory,1);
 surf(x,y,z);
 grid on;
 view(3);
+for i=1:overall_frames
+    show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true);
+    current_eepos=getTransform(robot,qTrajectory(i,:),endEffector);
+    current_ee=current_eepos(1:3,4);
+    scatter3(current_ee(1),current_ee(2),current_ee(3),'filled','y');
+    disp(current_ee);
+    %disp(qTrajectory(i,:));
+    drawnow;
+end
+
 %show(robot, config, "Frames","off", "PreservePlot", false);
-show(robot,a,"PreservePlot",true);
+%show(robot,a,"PreservePlot",true);
 camlight;
 lighting gouraud;
 material metal;
