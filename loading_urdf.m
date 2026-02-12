@@ -1,3 +1,15 @@
-robot=importrobot("rudra_arm.urdf");
+robot=importrobot("rudra_arm\urdf\rudra_arm.urdf");
+robot.DataFormat="row";
 showdetails(robot);
-show(robot,"Visuals","on");
+disp(robot.BaseName);
+base=rigidBody("newBase");
+jnt=rigidBodyJoint("baseJoint","fixed");
+tform = eul2tform([0 0 pi/2]);
+setFixedTransform(jnt,tform);
+base.Joint=jnt;
+addBody(robot,base,"base_link");
+config = homeConfiguration(robot);
+%config (6)=pi/4;
+disp(config);
+show(robot, config, "Frames","off", "PreservePlot", false);
+%camorbit(90,0);
