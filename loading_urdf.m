@@ -8,7 +8,7 @@ tform = eul2tform([0 0 pi/2]);
 setFixedTransform(jnt,tform);
 base.Joint=jnt;
 addBody(robot,base,"base_link");
-config = homeConfiguration(robot);
+config = randomConfiguration(robot);
 %config (6)=pi/4;
 disp(config);
 show(robot, config, "Frames","off", "PreservePlot", false);
