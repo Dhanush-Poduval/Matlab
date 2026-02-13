@@ -36,14 +36,12 @@ overall_frames=size(qTrajectory,1);
 surf(x,y,z);
 grid on;
 view(3);
-
+%{
 for i=1:overall_frames
    
-    isColliding = checkCollision(robot,config,SkippedSelfCollisions="parent");
-    if isColliding
-         show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off",Collisions="on");
-    else
+   
         show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off");
+    
 
         current_eepos=getTransform(robot,qTrajectory(i,:),"turntable");
         current_ee=current_eepos(1:3,4);
@@ -60,11 +58,10 @@ for i=1:overall_frames
         disp(current_ee);
         %disp(qTrajectory(i,:));
         drawnow;
-    end
+    
 end
-
-
-%show(robot, config, "Frames","off", "PreservePlot", false);
+%}
+show(robot, config, "Frames","off", "PreservePlot", false);
 %show(robot,a,"PreservePlot",true);
 camlight;
 lighting gouraud;
