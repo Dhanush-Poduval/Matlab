@@ -36,7 +36,6 @@ overall_frames=size(qTrajectory,1);
 surf(x,y,z);
 grid on;
 view(3);
-%{
 for i=1:overall_frames
    
    
@@ -60,8 +59,7 @@ for i=1:overall_frames
         drawnow;
     
 end
-%}
-show(robot, config, "Frames","off", "PreservePlot", false);
+%show(robot, config, "Frames","off", "PreservePlot", false);
 %show(robot,a,"PreservePlot",true);
 camlight;
 lighting gouraud;
