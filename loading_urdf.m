@@ -9,16 +9,17 @@ x=x+1.6;
 y=y+0.4;
 z=z*0.4;
 config = homeConfiguration(robot);
-%config(2)=pi/4;
+config(2)=pi/4;
 check_base=getTransform(robot,config,"base_link");
 disp(check_base);
 q0=config;
 ik=inverseKinematics("RigidBodyTree",robot);
 endEffector="roll";
+
 weights=[1 1 1 1 1 1];
 [a,~]=ik(endEffector,trvec2tform(final_position),weights,q0);
 disp(a);
-%config (6)=pi/4;
+
 disp(config);
 getTransform(robot,homeConfiguration(robot),"turntable","base_link")
 figure;
@@ -31,6 +32,7 @@ overall_frames=size(qTrajectory,1);
 surf(x,y,z);
 grid on;
 view(3);
+%{
 for i=1:overall_frames
    
    
@@ -54,7 +56,8 @@ for i=1:overall_frames
         drawnow;
     
 end
-%show(robot, config, "Frames","off", "PreservePlot", false);
+%}
+show(robot, config, "Frames","off", "PreservePlot", false);
 %show(robot,a,"PreservePlot",true);
 camlight;
 lighting gouraud;

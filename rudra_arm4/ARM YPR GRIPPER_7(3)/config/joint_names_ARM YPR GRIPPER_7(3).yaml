@@ -1,0 +1,1 @@
+controller_joint_names: ['', 'turntable_joint', 'pitch1_joint', 'pitch2_joint', 'ypr_pitch_joint', 'roll', ]
