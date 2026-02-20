@@ -1,4 +1,4 @@
-robot=importrobot("rudra_arm\urdf\rudra_arm.urdf");
+robot=importrobot("rudra_arm\urdf\rudra_arm1.urdf");
 robot.DataFormat="row";
 showdetails(robot);
 disp(robot.BaseName);
@@ -9,12 +9,11 @@ x=x+1.6;
 y=y+0.4;
 z=z*0.4;
 config = homeConfiguration(robot);
-config(2)=pi/4;
 check_base=getTransform(robot,config,"base_link");
 disp(check_base);
 q0=config;
 ik=inverseKinematics("RigidBodyTree",robot);
-endEffector="roll";
+endEffector="grip";
 
 weights=[1 1 1 1 1 1];
 [a,~]=ik(endEffector,trvec2tform(final_position),weights,q0);
@@ -38,7 +37,7 @@ for i=1:overall_frames
    
         show(robot,qTrajectory(i,:),"PreservePlot",false,"FastUpdate",true,"Frames","off");
     
-
+       
         current_eepos=getTransform(robot,qTrajectory(i,:),"turntable");
         current_ee=current_eepos(1:3,4);
         current_eepos2=getTransform(robot,qTrajectory(i,:),"roll");
@@ -51,6 +50,7 @@ for i=1:overall_frames
         scatter3(current_ee2(1),current_ee2(2),current_ee2(3),'filled','r');
         scatter3(current_ee3(1),current_ee3(2),current_ee3(3),'black');
         scatter3(current_ee4(1),current_ee4(2),current_ee4(3),'green');
+       
         disp(current_ee);
         %disp(qTrajectory(i,:));
         drawnow;
