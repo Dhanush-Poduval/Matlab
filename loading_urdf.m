@@ -1,25 +1,28 @@
-robot=importrobot("rudra_arm\urdf\rudra_arm1.urdf");
+robot=importrobot("./rudra_arm/urdf/rudra_arm.urdf");
 robot.DataFormat="row";
 showdetails(robot);
 disp(robot.BaseName);
 cyllinder_radius=0.05;
-final_position=[1.6,0.4,0.2];
+final_position=[1.6,0.2,0.2];
+scatter3(final_position(1),final_position(2),final_position(3),'yellow');
 [x,y,z]=cylinder(cyllinder_radius);
 x=x+1.6;
 y=y+0.4;
 z=z*0.4;
 config = homeConfiguration(robot);
+
 check_base=getTransform(robot,config,"base_link");
 disp(check_base);
 q0=config;
 ik=inverseKinematics("RigidBodyTree",robot);
-endEffector="grip";
+endEffector="claw";
 
 weights=[1 1 1 1 1 1];
 [a,~]=ik(endEffector,trvec2tform(final_position),weights,q0);
 disp(a);
 
 disp(config);
+%{
 getTransform(robot,homeConfiguration(robot),"turntable","base_link")
 figure;
 ax=gca;
@@ -31,7 +34,6 @@ overall_frames=size(qTrajectory,1);
 surf(x,y,z);
 grid on;
 view(3);
-%{
 for i=1:overall_frames
    
    
@@ -57,7 +59,7 @@ for i=1:overall_frames
     
 end
 %}
-show(robot, config, "Frames","off", "PreservePlot", false);
+show(robot, a, "Frames","off", "PreservePlot", false);
 %show(robot,a,"PreservePlot",true);
 camlight;
 lighting gouraud;

@@ -3,8 +3,8 @@
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
-  name="ARM YPR GRIPPER_7">
-  <link name="worldb"/>
+  name="ARM urdf">
+<link name="worldb"/>
     
     <joint name="world_joint" type="fixed">
       <parent link="worldb"/>
@@ -16,17 +16,17 @@
     name="base_link">
     <inertial>
       <origin
-        xyz="1.12169088699127 -0.121140693558929 -0.213529355221054"
+        xyz="1.1158 -0.10773 -0.23061"
         rpy="0 0 0" />
       <mass
-        value="4.50779680589233" />
+        value="4.0876" />
       <inertia
-        ixx="0.0155744669511241"
-        ixy="0.000267312829592054"
-        ixz="-0.000921990975110573"
-        iyy="0.0123110151558508"
-        iyz="0.00166823235851846"
-        izz="0.0144138530523192" />
+        ixx="0.01519"
+        ixy="0.00029846"
+        ixz="-0.00058927"
+        iyy="0.011351"
+        iyz="0.0016839"
+        izz="0.013474" />
     </inertial>
     <visual>
       <origin
@@ -39,7 +39,7 @@
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -56,17 +56,17 @@
     name="turntable">
     <inertial>
       <origin
-        xyz="0.105763980678447 -0.00089189198876527 -0.0260116131683339"
+        xyz="-0.0022543 -0.0091992 0.00092136"
         rpy="0 0 0" />
       <mass
-        value="2.52870378509003" />
+        value="2.5424" />
       <inertia
-        ixx="0.00641134887101375"
-        ixy="0.000853146367351283"
-        ixz="-9.61006870504373E-06"
-        iyy="0.00486617833905661"
-        iyz="2.16935043543991E-05"
-        izz="0.00929271252291498" />
+        ixx="0.0059966"
+        ixy="1.3976E-05"
+        ixz="-0.0010953"
+        iyy="0.009303"
+        iyz="1.9175E-05"
+        izz="0.0052907" />
     </inertial>
     <visual>
       <origin
@@ -79,7 +79,7 @@
       <material
         name="">
         <color
-          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -93,38 +93,38 @@
     </collision>
   </link>
   <joint
-    name="turntable_joint"
+    name="turntable"
     type="revolute">
     <origin
-      xyz="1.35 -0.216 -0.31116"
-      rpy="1.5708 -1.1533 3.1416" />
+      xyz="1.3062 -0.232 -0.21244"
+      rpy="0 0.94126 0" />
     <parent
       link="base_link" />
     <child
       link="turntable" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 -1 0" />
     <limit
-      lower="-3.14"
-      upper="3.14"
+      lower="-6.28"
+      upper="6.28"
       effort="0"
       velocity="0" />
   </joint>
   <link
-    name="worm_pitch">
+    name="link1">
     <inertial>
       <origin
-        xyz="-0.00975815373258329 -0.119432998209141 0.138678111763514"
+        xyz="-0.0017673 -0.10544 0.12039"
         rpy="0 0 0" />
       <mass
-        value="3.22088245146173" />
+        value="2.6849" />
       <inertia
-        ixx="0.0280751971325729"
-        ixy="-3.59522261295648E-08"
-        ixz="-5.70039309070444E-07"
-        iyy="0.0158829956773457"
-        iyz="0.0120530236922504"
-        izz="0.0134222737428643" />
+        ixx="0.027624"
+        ixy="-3.6535E-08"
+        ixz="-5.7059E-07"
+        iyy="0.015039"
+        iyz="0.012093"
+        izz="0.013381" />
     </inertial>
     <visual>
       <origin
@@ -132,12 +132,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/worm_pitch.STL" />
+          filename="../meshes/link1.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -146,20 +146,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/worm_pitch.STL" />
+          filename="../meshes/link1.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="pitch1_joint"
+    name="pitch1"
     type="revolute">
     <origin
-      xyz="0.0735164068372525 0.077745638479509 -0.151720000000009"
-      rpy="1.5707963267949 0 0.417471964024542" />
+      xyz="0.050075 -0.13572 0.068746"
+      rpy="3.1416 -0.62954 3.1416" />
     <parent
       link="turntable" />
     <child
-      link="worm_pitch" />
+      link="link1" />
     <axis
       xyz="-1 0 0" />
     <limit
@@ -169,20 +169,20 @@
       velocity="0" />
   </joint>
   <link
-    name="pulley">
+    name="link2">
     <inertial>
       <origin
-        xyz="-0.0196065460520456 -0.019635619644676 -0.0321128890960279"
+        xyz="-0.065297 -0.06134 -0.062592"
         rpy="0 0 0" />
       <mass
-        value="1.1765100986821" />
+        value="1.7567" />
       <inertia
-        ixx="0.0013481180306053"
-        ixy="-0.000524141829758074"
-        ixz="-1.45228372561171E-11"
-        iyy="0.0013502733799712"
-        iyz="-2.43390960493944E-11"
-        izz="0.00206338874473855" />
+        ixx="0.0021053"
+        ixy="-0.00084408"
+        ixz="1.9537E-06"
+        iyy="0.0021881"
+        iyz="-2.2194E-06"
+        izz="0.0031785" />
     </inertial>
     <visual>
       <origin
@@ -190,12 +190,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/pulley.STL" />
+          filename="../meshes/link2.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -204,20 +204,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/pulley.STL" />
+          filename="../meshes/link2.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="pitch2_joint"
+    name="pitch2"
     type="revolute">
     <origin
-      xyz="-0.0599999999999885 -0.289979355471976 0.310703996433991"
-      rpy="1.5707963267949 -1.37469687411002 -1.5707963267949" />
+      xyz="-0.081 -0.29511 0.30583"
+      rpy="1.5708 -1.2551 -1.5708" />
     <parent
-      link="worm_pitch" />
+      link="link1" />
     <child
-      link="pulley" />
+      link="link2" />
     <axis
       xyz="0 0 -1" />
     <limit
@@ -227,20 +227,20 @@
       velocity="0" />
   </joint>
   <link
-    name="pitch">
+    name="diff1">
     <inertial>
       <origin
-        xyz="0.0522498739683379 0.0742869890252056 -4.31001591416624E-07"
+        xyz="0.010938 0.0095726 -0.026521"
         rpy="0 0 0" />
       <mass
-        value="0.408155014247325" />
+        value="0.33528" />
       <inertia
-        ixx="0.000242488546693066"
-        ixy="1.92181816820879E-08"
-        ixz="-7.90453575772194E-05"
-        iyy="0.000461066849067201"
-        iyz="-3.47212845557303E-09"
-        izz="0.000428372044396769" />
+        ixx="0.00016168"
+        ixy="-3.549E-06"
+        ixz="-6.267E-09"
+        iyy="0.0001627"
+        iyz="-5.389E-08"
+        izz="0.0001914" />
     </inertial>
     <visual>
       <origin
@@ -248,12 +248,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/pitch.STL" />
+          filename="../meshes/diff1.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -262,78 +262,20 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/pitch.STL" />
+          filename="../meshes/diff1.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="ypr_pitch_joint"
+    name="pitch"
     type="revolute">
     <origin
-      xyz="-0.19051 -0.17768 -0.112"
-      rpy="0.90468 -1.5708 0" />
+      xyz="-0.22864 -0.20765 -0.10663"
+      rpy="-3.1416 0 -1.75" />
     <parent
-      link="pulley" />
+      link="link2" />
     <child
-      link="pitch" />
-    <axis
-      xyz="-1 0 0" />
-    <limit
-      lower="-3.14"
-      upper="3.14"
-      effort="0"
-      velocity="0" />
-  </joint>
-  <link
-    name="roll">
-    <inertial>
-      <origin
-        xyz="-5.91181088693826E-07 -1.07613049804556E-07 -0.00814969452703318"
-        rpy="0 0 0" />
-      <mass
-        value="0.305019859228966" />
-      <inertia
-        ixx="0.000221896838297734"
-        ixy="0.000130666261112019"
-        ixz="1.53267284145253E-09"
-        iyy="0.000223982238707175"
-        iyz="4.69145175936307E-09"
-        izz="0.000389054925388365" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="../meshes/roll.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="../meshes/roll.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="roll"
-    type="continuous">
-    <origin
-      xyz="0.05225 0.069756 0"
-      rpy="1.5708 -1.1062 0" />
-    <parent
-      link="pitch" />
-    <child
-      link="roll" />
+      link="diff1" />
     <axis
       xyz="0 0 1" />
     <limit
@@ -343,20 +285,20 @@
       velocity="0" />
   </joint>
   <link
-    name="grip">
+    name="diff 2">
     <inertial>
       <origin
-        xyz="-0.0264212696817925 7.21644966006352E-15 0.0519403659924382"
+        xyz="0.10385 -0.0274 0.0432"
         rpy="0 0 0" />
       <mass
-        value="0.134543517946272" />
+        value="0.50646" />
       <inertia
-        ixx="5.22930570804675E-05"
-        ixy="1.78215732102305E-18"
-        ixz="-2.24360153272595E-06"
-        iyy="0.000148952960809367"
-        iyz="5.59041745187838E-20"
-        izz="0.000126256855074672" />
+        ixx="0.00053971"
+        ixy="-9.4168E-08"
+        ixz="5.8369E-05"
+        iyy="0.00099608"
+        iyz="4.9501E-07"
+        izz="0.00066814" />
     </inertial>
     <visual>
       <origin
@@ -364,12 +306,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/grip.STL" />
+          filename="../meshes/diff 2.STL" />
       </geometry>
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -378,22 +320,80 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/grip.STL" />
+          filename="../meshes/diff 2.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="grip"
-    type="fixed">
+    name="yprroll"
+    type="revolute">
     <origin
-      xyz="0.086479 -0.086479 -0.11021"
-      rpy="2.3562 -1.5708 0" />
+      xyz="0.019826 0.089558 0.048964"
+      rpy="-1.5708 1.25 -0.84529" />
     <parent
-      link="roll" />
+      link="diff1" />
     <child
-      link="grip" />
+      link="diff 2" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="claw">
+    <inertial>
+      <origin
+        xyz="-0.022045 0.00067745 -0.0069498"
+        rpy="0 0 0" />
+      <mass
+        value="0.078604" />
+      <inertia
+        ixx="1.3877E-05"
+        ixy="1.7157E-18"
+        ixz="2.238E-06"
+        iyy="0.00011054"
+        iyz="-1.5416E-19"
+        izz="0.00012082" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/claw.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/claw.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="claw"
+    type="prismatic">
+    <origin
+      xyz="0.12531 -0.028177 0.12448"
+      rpy="3.1416 -1.5708 0" />
+    <parent
+      link="diff 2" />
+    <child
+      link="claw" />
+    <axis
+      xyz="0 0 1" />
     <limit
       lower="-3.14"
       upper="3.14"
