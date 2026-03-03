@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Assem ARM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.071944 0.1126 0.37511"
+        rpy="0 0 0" />
+      <mass
+        value="3.4477" />
+      <inertia
+        ixx="0.013724"
+        ixy="-0.0002658"
+        ixz="0.00058984"
+        iyy="0.010995"
+        iyz="0.0017053"
+        izz="0.012008" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="turtable">
+    <inertial>
+      <origin
+        xyz="1.3004 -0.21257 0.26872"
+        rpy="0 0 0" />
+      <mass
+        value="1.2414" />
+      <inertia
+        ixx="0.0016397"
+        ixy="-3.1369E-09"
+        ixz="-4.241E-05"
+        iyy="0.003939"
+        iyz="1.208E-09"
+        izz="0.0036748" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/turtable.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/turtable.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turntable"
+    type="revolute">
+    <origin
+      xyz="-1.0002 -0.14506 0.0063099"
+      rpy="0 0 -0.012421" />
+    <parent
+      link="base_link" />
+    <child
+      link="turtable" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link1">
+    <inertial>
+      <origin
+        xyz="1.2852 -0.21253 0.45437"
+        rpy="0 0 0" />
+      <mass
+        value="1.8407" />
+      <inertia
+        ixx="0.00618"
+        ixy="5.7059E-07"
+        ixz="0.0051572"
+        iyy="0.012789"
+        iyz="3.6536E-08"
+        izz="0.0073412" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pitch1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="turtable" />
+    <child
+      link="link1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="1.204 -0.22446 0.718"
+        rpy="0 0 0" />
+      <mass
+        value="0.96031" />
+      <inertia
+        ixx="0.00074333"
+        ixy="4.1172E-07"
+        ixz="-0.00024702"
+        iyy="0.0013804"
+        iyz="-9.7425E-07"
+        izz="0.0011504" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pitch2"
+    type="revolute">
+    <origin
+      xyz="-0.035587 0.00014221 0.062144"
+      rpy="0 0.056314 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="diff1">
+    <inertial>
+      <origin
+        xyz="1.3753 -0.21261 0.79218"
+        rpy="0 0 0" />
+      <mass
+        value="0.21134" />
+      <inertia
+        ixx="0.00010116"
+        ixy="-1.4756E-08"
+        ixz="-9.3412E-06"
+        iyy="0.00015266"
+        iyz="-5.3928E-09"
+        izz="0.0001233" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/diff1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/diff1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="ypr pitch"
+    type="revolute">
+    <origin
+      xyz="-0.14258 -0.4236 0.32792"
+      rpy="3.1416 -0.82005 0" />
+    <parent
+      link="link2" />
+    <child
+      link="diff1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="diff2">
+    <inertial>
+      <origin
+        xyz="1.4791 -0.2298 0.8289"
+        rpy="0 0 0" />
+      <mass
+        value="0.68469" />
+      <inertia
+        ixx="0.00072293"
+        ixy="-5.6499E-05"
+        ixz="1.5391E-05"
+        iyy="0.00075193"
+        iyz="0.00012328"
+        izz="0.0011087" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/diff2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/diff2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="yprroll"
+    type="revolute">
+    <origin
+      xyz="0.30577 -0.37412 -0.40308"
+      rpy="-0.31781 -0.2853 0.091462" />
+    <parent
+      link="diff1" />
+    <child
+      link="diff2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>
