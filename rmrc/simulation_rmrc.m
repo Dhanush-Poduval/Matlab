@@ -1,7 +1,10 @@
 robot=loadrobot("kukaIiwa14","DataFormat","row");
 config=randomConfiguration(robot);
-check_base=getTransform(robot,config,"world");
 endEffector="iiwa_link_ee_kuka";
+check_base=getTransform(robot,config,endEffector);
 disp(check_base);
+disp(check_base(1,4));
+disp(check_base(2,4));
+disp(check_base(3,4));
 show(robot,config);
 showdetails(robot);
