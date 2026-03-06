@@ -25,7 +25,9 @@ end
 %}
 dt=0.05;
 velocities=[0.3,0.4,0.3,0,0,0]';
-for i=1:200 
+[ee_new_config , ~]=psudoinverse_function(endEffector,velocities);
+show(robot,ee_new_config)
+    %{
     J=geometricJacobian(robot,config,endEffector);
     dq=pinv(J)*velocities;
     disp(det(J*J'));
@@ -35,5 +37,5 @@ for i=1:200
     disp(ee_pos);
     show(robot,config,"PreservePlot",false,"FastUpdate",true);
     drawnow
-end
+    %}
 showdetails(robot);
