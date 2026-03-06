@@ -23,10 +23,17 @@ while true
     pause(0.01);
 end
 %}
-velocities=[0.05,0,0,0,0,0]';
-J=geometricJacobian(robot,config,endEffector);
-dq=pinv(J)*velocities;
 dt=0.05;
-config=config+dq' *dt;
-show(robot,config);
+velocities=[0.05,0,0,0,0,0]';
+for i=1:200 
+    
+    J=geometricJacobian(robot,config,endEffector);
+    dq=pinv(J)*velocities;
+    config=config+dq' *dt;
+    check_endeffector=getTransform(robot,config,endEffector);
+    ee_pos=check_endeffector(1:3,4);
+    disp(ee_pos);
+    show(robot,config,"PreservePlot",false,"FastUpdate",true);
+    drawnow
+end
 showdetails(robot);
