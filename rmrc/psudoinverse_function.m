@@ -1,22 +1,26 @@
-function [x,y]=psudoinverse_function(endEffector,velocities)
+function [x,y]=psudoinverse_function(endEffector,velocities,config)
 arguments
     endEffector (1,:) char 
     velocities (6,1) double
+    config (1,7) double
 end
-    dt=0.05;
+    dt=0.1;
     persistent robot
     if isempty(robot)
         robot=generalizedRobotforcodeGen();
     end
-    config=zeros(1,7);
+    new_config=config(1,:);
     disp(config);
-    for i=1:200
-        J=geometricJacobian(robot,config,endEffector);
-        dq=pinv(J)*velocities;
-        config=config+dq' *dt;
-        x=config;
-        y=0;
+    
+    J=geometricJacobian(robot,new_config,endEffector);
+    J_base=J(1:3,:);
+    dq=pinv(J_base)*velocities(1:3);
+    v_actual=J*dq;
+    disp(v_actual);
+    new_config=new_config+dq' *dt;
+    x=new_config;
+    y=0;
 
         
-    end
+    
     

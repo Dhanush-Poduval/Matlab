@@ -1,5 +1,5 @@
 robot=loadrobot("kukaIiwa14","DataFormat","row");
-config=homeConfiguration(robot);
+config=randomConfiguration(robot);
 endEffector="iiwa_link_ee_kuka";
 check_base=getTransform(robot,config,"iiwa_link_ee_kuka");
 rotation=check_base(1:3,1:3);
@@ -23,10 +23,18 @@ while true
     pause(0.01);
 end
 %}
-dt=0.05;
-velocities=[0.3,0.4,0.3,0,0,0]';
-[ee_new_config , ~]=psudoinverse_function(endEffector,velocities);
-show(robot,ee_new_config)
+velocities=[1,0,0,0,0,0]';
+for i=1:200
+ [ee_new_config , ~]=psudoinverse_function(endEffector,velocities,config);
+ config=ee_new_config;
+ ee_pos=getTransform(robot,config,"iiwa_link_ee_kuka");
+ test_ee_pos=ee_pos(1:3,4);
+ delta=test_ee_pos-inital_ee_pos;
+ fprintf("dx : %.6f dy : %.6f dz : %.6f\n",delta(1),delta(2),delta(3));
+ show(robot,ee_new_config,"PreservePlot",false,"FastUpdate",true);
+ drawnow;
+ inital_ee_pos=test_ee_pos;
+end
     %{
     J=geometricJacobian(robot,config,endEffector);
     dq=pinv(J)*velocities;
