@@ -1,7 +1,9 @@
-robot=loadrobot("kukaIiwa14","DataFormat","row");
-config=[-0.7305,10.3247,1.0762,-4.4834,-0.1019,-0.0022,1.1616];
-endEffector="iiwa_link_ee_kuka";
-check_base=getTransform(robot,config,"iiwa_link_ee_kuka");
+robot=loadrobot("abbIrb120","DataFormat","row");
+config=[0.632676731720343,1.320290394051874,-2.587602039092178,30.034935525325636,1.181387273943933,1.370772996187859];
+writeAsFunction(robot, "rmrcRobot");
+showdetails(robot);
+endEffector="tool0";
+check_base=getTransform(robot,config,"tool0");
 rotation=check_base(1:3,1:3);
 disp(rotation);
 eul=rotm2eul(rotation);
@@ -23,13 +25,13 @@ while true
     pause(0.01);
 end
 %}
-velocities=[0,0,1,0,0,0]';
+velocities=[1,0,0,0,0,0]';
 %show(robot,config);
 
-for i=1:200
+for i=1:40
  [ee_new_config , ~]=psudoinverse_function(endEffector,velocities,config);
  config=ee_new_config;
- ee_pos=getTransform(robot,config,"iiwa_link_ee_kuka");
+ ee_pos=getTransform(robot,config,"tool0");
  test_ee_pos=ee_pos(1:3,4);
  delta=test_ee_pos-inital_ee_pos;
  fprintf("dx : %.6f dy : %.6f dz : %.6f\n",delta(1),delta(2),delta(3));
@@ -50,4 +52,4 @@ disp(test_ee_pos);
     show(robot,config,"PreservePlot",false,"FastUpdate",true);
     drawnow
     %}
-showdetails(robot);
+
