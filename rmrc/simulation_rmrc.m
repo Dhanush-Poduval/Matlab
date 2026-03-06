@@ -29,6 +29,7 @@ for i=1:200
     
     J=geometricJacobian(robot,config,endEffector);
     dq=pinv(J)*velocities;
+    disp(det(J*J'));
     config=config+dq' *dt;
     check_endeffector=getTransform(robot,config,endEffector);
     ee_pos=check_endeffector(1:3,4);
