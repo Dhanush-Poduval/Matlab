@@ -1,7 +1,7 @@
 robot=loadrobot("kukaIiwa14","DataFormat","row");
 config=homeConfiguration(robot);
 endEffector="iiwa_link_ee_kuka";
-check_base=getTransform(robot,config,endEffector);
+check_base=getTransform(robot,config,"iiwa_link_ee_kuka");
 rotation=check_base(1:3,1:3);
 disp(rotation);
 eul=rotm2eul(rotation);
@@ -24,7 +24,7 @@ while true
 end
 %}
 dt=0.05;
-velocities=[0.05,0,0,0,0,0]';
+velocities=[0.3,0.4,0.3,0,0,0]';
 for i=1:200 
     
     J=geometricJacobian(robot,config,endEffector);
