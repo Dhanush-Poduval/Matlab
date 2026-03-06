@@ -1,5 +1,5 @@
 robot=loadrobot("kukaIiwa14","DataFormat","row");
-config=randomConfiguration(robot);
+config=[-0.7305,10.3247,1.0762,-4.4834,-0.1019,-0.0022,1.1616];
 endEffector="iiwa_link_ee_kuka";
 check_base=getTransform(robot,config,"iiwa_link_ee_kuka");
 rotation=check_base(1:3,1:3);
