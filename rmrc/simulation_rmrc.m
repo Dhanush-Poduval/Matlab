@@ -5,12 +5,14 @@ check_base=getTransform(robot,config,endEffector);
 rotation=check_base(1:3,1:3);
 disp(rotation);
 eul=rotm2eul(rotation);
+disp(eul);
 %inital vector 
 inital_ee_pos=check_base(1:3,4);
 disp(inital_ee_pos);
 disp(check_base);
 %joystick sim
-
+    
+%{
 joy=sim3d.io.Joystick();
 while true 
     axes=axis(joy);
@@ -20,6 +22,11 @@ while true
     disp([x,y]);
     pause(0.01);
 end
-
-%show(robot,config);
-%showdetails(robot);
+%}
+velocities=[0.05,0,0,0,0,0]';
+J=geometricJacobian(robot,config,endEffector);
+dq=pinv(J)*velocities;
+dt=0.05;
+config=config+dq' *dt;
+show(robot,config);
+showdetails(robot);
