@@ -23,7 +23,9 @@ while true
     pause(0.01);
 end
 %}
-velocities=[1,0,0,0,0,0]';
+velocities=[0,0,1,0,0,0]';
+%show(robot,config);
+
 for i=1:200
  [ee_new_config , ~]=psudoinverse_function(endEffector,velocities,config);
  config=ee_new_config;
@@ -35,6 +37,8 @@ for i=1:200
  drawnow;
  inital_ee_pos=test_ee_pos;
 end
+disp(test_ee_pos);
+
     %{
     J=geometricJacobian(robot,config,endEffector);
     dq=pinv(J)*velocities;

@@ -10,15 +10,12 @@ end
     if isempty(robot)
         robot=generalizedRobotforcodeGen();
     end
-    new_config=config(1,:);
+    new_config=config;
     J=geometricJacobian(robot,new_config,endEffector);
-    size_J=size(J);
-    disp(size_J);
-    J_base=J(1:3,:);
-    size_Jbase=size(J_base);
-    disp(size_Jbase);
-    dq= pinv(J_base)*velocities(1:3);
-    %dq= J_base' * ((J_base*J_base' + lambda^2 * eye(3)) \ velocities(1:3));
+    
+    
+    A=(J*J' + lambda^2 * eye(6)) \ velocities;
+    dq= J' * (A);
     new_config=new_config+dq' *dt;
     x=new_config;
     y=0;
