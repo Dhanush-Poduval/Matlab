@@ -26,7 +26,6 @@ end
 dt=0.05;
 velocities=[0.3,0.4,0.3,0,0,0]';
 for i=1:200 
-    
     J=geometricJacobian(robot,config,endEffector);
     dq=pinv(J)*velocities;
     disp(det(J*J'));
