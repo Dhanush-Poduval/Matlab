@@ -1,4 +1,4 @@
-function [x,y]=psudoinverse_function(endEffector,velocities,config)
+function [x,y]=psudoinverse_function(endEffector,velocities,config)%#codegen
 arguments
     endEffector (1,:) char 
     velocities (6,1) double
