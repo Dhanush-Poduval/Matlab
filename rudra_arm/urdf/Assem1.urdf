@@ -3,12 +3,12 @@
      Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
-  name="Assem ARM">
+  name="Assem1">
   <link
     name="base_link">
     <inertial>
       <origin
-        xyz="0.071944 0.1126 0.37511"
+        xyz="0.22217 0.10229 0.24666"
         rpy="0 0 0" />
       <mass
         value="3.4477" />
@@ -45,20 +45,20 @@
     </collision>
   </link>
   <link
-    name="turtable">
+    name="turntable">
     <inertial>
       <origin
-        xyz="1.3004 -0.21257 0.26872"
+        xyz="-0.0050998 0.098723 -0.0027132"
         rpy="0 0 0" />
       <mass
         value="1.2414" />
       <inertia
-        ixx="0.0016397"
-        ixy="-3.1369E-09"
-        ixz="-4.241E-05"
-        iyy="0.003939"
-        iyz="1.208E-09"
-        izz="0.0036748" />
+        ixx="0.0021904"
+        ixy="-3.6983E-05"
+        ixz="-0.00098133"
+        iyy="0.0036748"
+        iyz="-2.0757E-05"
+        izz="0.0033882" />
     </inertial>
     <visual>
       <origin
@@ -66,7 +66,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/turtable.STL" />
+          filename="../meshes/turntable.STL" />
       </geometry>
       <material
         name="">
@@ -80,7 +80,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/turtable.STL" />
+          filename="../meshes/turntable.STL" />
       </geometry>
     </collision>
   </link>
@@ -88,35 +88,35 @@
     name="turntable"
     type="revolute">
     <origin
-      xyz="-1.0002 -0.14506 0.0063099"
-      rpy="0 0 -0.012421" />
+      xyz="0.45345 0.166 0.24526"
+      rpy="0 0 0" />
     <parent
       link="base_link" />
     <child
-      link="turtable" />
+      link="turntable" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 -1 0" />
     <limit
-      lower="-3.14"
-      upper="3.14"
+      lower="0"
+      upper="0"
       effort="0"
       velocity="0" />
   </joint>
   <link
-    name="link1">
+    name="1st link">
     <inertial>
       <origin
-        xyz="1.2852 -0.21253 0.45437"
+        xyz="-0.092496 0.086648 -0.051806"
         rpy="0 0 0" />
       <mass
         value="1.8407" />
       <inertia
-        ixx="0.00618"
-        ixy="5.7059E-07"
-        ixz="0.0051572"
-        iyy="0.012789"
-        iyz="3.6536E-08"
-        izz="0.0073412" />
+        ixx="0.0077636"
+        ixy="0.0044973"
+        ixz="-0.0028212"
+        iyy="0.0073412"
+        iyz="0.002524"
+        izz="0.011206" />
     </inertial>
     <visual>
       <origin
@@ -124,7 +124,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/link1.STL" />
+          filename="../meshes/1st link.STL" />
       </geometry>
       <material
         name="">
@@ -138,43 +138,38 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/link1.STL" />
+          filename="../meshes/1st link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="pitch1"
-    type="revolute">
+    name="1st link"
+    type="fixed">
     <origin
-      xyz="0 0 0"
+      xyz="0.074167 0.19772 0.041626"
       rpy="0 0 0" />
     <parent
-      link="turtable" />
+      link="turntable" />
     <child
-      link="link1" />
+      link="1st link" />
     <axis
-      xyz="-1 0 0" />
-    <limit
-      lower="-3.14"
-      upper="3.14"
-      effort="0"
-      velocity="0" />
+      xyz="0 0 -1" />
   </joint>
   <link
-    name="link2">
+    name="2nd link">
     <inertial>
       <origin
-        xyz="1.204 -0.22446 0.718"
+        xyz="0.081582 0.083889 0.059568"
         rpy="0 0 0" />
       <mass
         value="0.96031" />
       <inertia
-        ixx="0.00074333"
-        ixy="4.1172E-07"
-        ixz="-0.00024702"
-        iyy="0.0013804"
-        iyz="-9.7425E-07"
-        izz="0.0011504" />
+        ixx="0.0010107"
+        ixy="-0.00027564"
+        ixz="-0.0002081"
+        iyy="0.0010002"
+        iyz="-0.00015374"
+        izz="0.0012632" />
     </inertial>
     <visual>
       <origin
@@ -182,7 +177,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/link2.STL" />
+          filename="../meshes/2nd link.STL" />
       </geometry>
       <material
         name="">
@@ -196,43 +191,38 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/link2.STL" />
+          filename="../meshes/2nd link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="pitch2"
-    type="revolute">
+    name="2nd link"
+    type="fixed">
     <origin
-      xyz="-0.035587 0.00014221 0.062144"
-      rpy="0 0.056314 0" />
+      xyz="-0.26523 0.29511 -0.1523"
+      rpy="0 0 0" />
     <parent
-      link="link1" />
+      link="1st link" />
     <child
-      link="link2" />
+      link="2nd link" />
     <axis
       xyz="0 0 -1" />
-    <limit
-      lower="-3.14"
-      upper="3.14"
-      effort="0"
-      velocity="0" />
   </joint>
   <link
-    name="diff1">
+    name="ypr pitch">
     <inertial>
       <origin
-        xyz="1.3753 -0.21261 0.79218"
+        xyz="-0.008307 0.0070028 0.025092"
         rpy="0 0 0" />
       <mass
         value="0.21134" />
       <inertia
-        ixx="0.00010116"
-        ixy="-1.4756E-08"
-        ixz="-9.3412E-06"
-        iyy="0.00015266"
-        iyz="-5.3928E-09"
-        izz="0.0001233" />
+        ixx="0.00012543"
+        ixy="-1.197E-05"
+        ixz="-1.5292E-05"
+        iyy="0.00010762"
+        iyz="-6.7327E-06"
+        izz="0.00014407" />
     </inertial>
     <visual>
       <origin
@@ -240,7 +230,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/diff1.STL" />
+          filename="../meshes/ypr pitch.STL" />
       </geometry>
       <material
         name="">
@@ -254,43 +244,43 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/diff1.STL" />
+          filename="../meshes/ypr pitch.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="ypr pitch"
+    name="pitch"
     type="revolute">
     <origin
-      xyz="-0.14258 -0.4236 0.32792"
-      rpy="3.1416 -0.82005 0" />
+      xyz="0.22268 0.19482 0.092911"
+      rpy="0 0 0" />
     <parent
-      link="link2" />
+      link="2nd link" />
     <child
-      link="diff1" />
+      link="ypr pitch" />
     <axis
-      xyz="-1 0 0" />
+      xyz="-0.48941 0 0.87205" />
     <limit
-      lower="-3.14"
-      upper="3.14"
+      lower="0"
+      upper="0"
       effort="0"
       velocity="0" />
   </joint>
   <link
-    name="diff2">
+    name="ypr roll">
     <inertial>
       <origin
-        xyz="1.4791 -0.2298 0.8289"
+        xyz="0.050513 0.063002 0.010477"
         rpy="0 0 0" />
       <mass
         value="0.68469" />
       <inertia
-        ixx="0.00072293"
-        ixy="-5.6499E-05"
-        ixz="1.5391E-05"
-        iyy="0.00075193"
-        iyz="0.00012328"
-        izz="0.0011087" />
+        ixx="0.00089963"
+        ixy="-0.00011033"
+        ixz="0.00014337"
+        iyy="0.00085801"
+        iyz="-0.00017518"
+        izz="0.00082592" />
     </inertial>
     <visual>
       <origin
@@ -298,7 +288,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/diff2.STL" />
+          filename="../meshes/ypr roll.STL" />
       </geometry>
       <material
         name="">
@@ -312,25 +302,25 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="../meshes/diff2.STL" />
+          filename="../meshes/ypr roll.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="yprroll"
+    name="roll"
     type="revolute">
     <origin
-      xyz="0.30577 -0.37412 -0.40308"
-      rpy="-0.31781 -0.2853 0.091462" />
+      xyz="0.0064818 0.030526 0.033306"
+      rpy="0 0 0" />
     <parent
-      link="diff1" />
+      link="ypr pitch" />
     <child
-      link="diff2" />
+      link="ypr roll" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0.50916 0.81185 0.28575" />
     <limit
-      lower="-3.14"
-      upper="3.14"
+      lower="0"
+      upper="0"
       effort="0"
       velocity="0" />
   </joint>
