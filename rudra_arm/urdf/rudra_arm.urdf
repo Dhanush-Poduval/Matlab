@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This src was automatically created by SolidWorks to src Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_src_exporter -->
+<robot
+  name="ARMDIFF1">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0795442121036043 -0.01602443169647 0.107180848378148"
+        rpy="0 0 0" />
+      <mass
+        value="4.11154835831467" />
+      <inertia
+        ixx="0.0151957167711445"
+        ixy="-0.00058927143497402"
+        ixz="-0.000298460614750611"
+        iyy="0.0134803403027814"
+        iyz="-0.00168386916840312"
+        izz="0.0113625096671542" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="turntable">
+    <inertial>
+      <origin
+        xyz="9.13023923239109E-05 -0.0024056012967886 0.0100116131683335"
+        rpy="0 0 0" />
+      <mass
+        value="2.52870378509003" />
+      <inertia
+        ixx="0.00448778718654028"
+        ixy="-3.74233803322155E-08"
+        ixz="-2.37268083054849E-05"
+        iyy="0.00678974002353009"
+        iyz="-1.09235876004421E-08"
+        izz="0.00929271252291499" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/turntable.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.650980392156863 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/turntable.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="turntable_joint"
+    type="revolute">
+    <origin
+      xyz="0.26745 0 0.232"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="turntable" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.0"
+      upper="3.0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="linkOne">
+    <inertial>
+      <origin
+        xyz="-0.100244542613256 -0.00176534936583775 0.124385039632063"
+        rpy="0 0 0" />
+      <mass
+        value="2.68487318801417" />
+      <inertia
+        ixx="0.0174932605405339"
+        ixy="5.76960908171894E-07"
+        ixz="0.0116641990704758"
+        iyy="0.0276242896685043"
+        iyz="4.2094107731542E-08"
+        izz="0.0109262195664435" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/linkOne.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/linkOne.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="linkOneJoint"
+    type="revolute">
+    <origin
+      xyz="0.08505 0 0.13572"
+      rpy="0 2.17 0" />
+    <parent
+      link="turntable" />
+    <child
+      link="linkOne" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="-2.5"
+      upper="0.6"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="linkTwo">
+    <inertial>
+      <origin
+        xyz="0.0829188073622378 -0.022174801138641 0.0322356415874625"
+        rpy="0 0 0" />
+      <mass
+        value="1.78349088911356" />
+      <inertia
+        ixx="0.00151844421857204"
+        ixy="7.54457992448709E-07"
+        ixz="-0.000565340337418598"
+        iyy="0.00318746407278275"
+        iyz="-2.00635640821411E-06"
+        izz="0.0027849032727184" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/linkTwo.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/linkTwo.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="linkTwoJoint"
+    type="revolute">
+    <origin
+      xyz="-0.25101 0.0036996 0.34296"
+      rpy="0 -1.84 0" />
+    <parent
+      link="linkOne" />
+    <child
+      link="linkTwo" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-4"
+      upper="0.6"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="pitch">
+    <inertial>
+      <origin
+        xyz="-0.000115911516902711 0.00776673541874512 -4.42977706646142E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.206798859444493" />
+      <inertia
+        ixx="5.74902620618589E-05"
+        ixy="-2.37424501388743E-08"
+        ixz="-7.33196242264036E-06"
+        iyy="9.89143840163847E-05"
+        iyz="4.01210406354253E-08"
+        izz="7.38733335173996E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/pitch.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/pitch.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="pitchJoint"
+    type="revolute">
+    <origin
+      xyz="0.28763 -0.0039432 0.11154"
+      rpy="0 0 0" />
+    <parent
+      link="linkTwo" />
+    <child
+      link="pitch" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="roll">
+    <inertial>
+      <origin
+        xyz="0.0865388873770818 -0.0133164952167475 0.0377304445159068"
+        rpy="0 0 0" />
+      <mass
+        value="0.720629967020805" />
+      <inertia
+        ixx="0.000806933187324885"
+        ixy="-9.75432938339153E-05"
+        ixz="-0.000104834105042124"
+        iyy="0.000760196565718267"
+        iyz="0.000105587547262329"
+        izz="0.00109285799787045" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/roll.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="../meshes/roll.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rollJoint"
+    type="revolute">
+    <origin
+      xyz="0.017053 0 0.0065172"
+      rpy="0.4 0 0" />
+    <parent
+      link="pitch" />
+    <child
+      link="roll" />
+    <axis
+      xyz="0.93411 0 0.35699" />
+    <limit
+      lower="-4"
+      upper="4"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

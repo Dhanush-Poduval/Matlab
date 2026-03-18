@@ -1,4 +1,4 @@
-robot=importrobot("./rudra_arm/urdf/Assem1.urdf");
+robot=importrobot("./rudra_arm/urdf/rudra_arm.urdf");
 robot.DataFormat="row";
 showdetails(robot);
 disp(robot.BaseName);
