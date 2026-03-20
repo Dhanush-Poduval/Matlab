@@ -1,4 +1,4 @@
-robot=importrobot("./rudra_arm/urdf/rudra_arm.urdf");
+robot=importrobot("./rudra_arm/urdf/N1.urdf");
 robot.DataFormat="row";
 showdetails(robot);
 disp(robot.BaseName);
@@ -9,7 +9,7 @@ scatter3(final_position(1),final_position(2),final_position(3),'yellow');
 x=x+1.6;
 y=y+0.4;
 z=z*0.4;
-config = homeConfiguration(robot);
+config = randomConfiguration(robot);
 
 check_base=getTransform(robot,config,"base_link");
 disp(check_base);
