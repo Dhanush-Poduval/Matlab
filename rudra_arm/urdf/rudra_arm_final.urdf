@@ -434,7 +434,7 @@
   </link>
   <joint
     name="claw"
-    type="prismatic">
+    type="fixed">
     <origin
       xyz="-0.00027829 0.08223 -0.11311"
       rpy="3.1416 -0.34776 -0.032181" />
