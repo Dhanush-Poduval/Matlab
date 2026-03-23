@@ -4,6 +4,15 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="New Arm(urdf)2">
+<link name="worldb"/>
+
+    <joint name="world_joint" type="fixed">
+      <parent link="worldb"/>
+      <child link="base_link"/>
+      <origin xyz="0 0 0" rpy="-1.518 0 0"/>
+     
+    </joint>
+
   <link
     name="base_link">
     <inertial>
@@ -89,7 +98,7 @@
     type="revolute">
     <origin
       xyz="0.151 0.010905 -0.0415"
-      rpy="0 0 0" />
+      rpy="-3.1416 0 0" />
     <parent
       link="base_link" />
     <child
@@ -434,7 +443,7 @@
   </link>
   <joint
     name="claw"
-    type="prismatic">
+    type="fixed">
     <origin
       xyz="-0.00027829 0.08223 -0.11311"
       rpy="3.1416 -0.34776 -0.032181" />
