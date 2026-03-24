@@ -1,6 +1,9 @@
 robot=importrobot("./rudra_arm/urdf/rudra_arm_new.urdf");
 robot.DataFormat="row";
+
 showdetails(robot);
+config=homeConfiguration(robot);
+%{
 disp(robot.BaseName);
 cyllinder_radius=0.05;
 final_position=[1.6,0.2,0.2];
@@ -9,19 +12,19 @@ scatter3(final_position(1),final_position(2),final_position(3),'yellow');
 x=x+1.6;
 y=y+0.4;
 z=z*0.4;
-config = randomConfiguration(robot);
-
-check_base=getTransform(robot,config,"base_link");
-disp(check_base);
-q0=config;
+config = homeConfiguration(robot);
+%check_base=getTransform(robot,config,"base_link");
+%disp(check_base);
+%q0=config;
 %ik=inverseKinematics("RigidBodyTree",robot);
 %endEffector="pulley";
 
-weights=[1 1 1 1 1 1];
+%weights=[1 1 1 1 1 1];
 %[a,~]=ik(endEffector,trvec2tform(final_position),weights,q0);
 %disp(a);
 
-disp(config);
+%disp(config);
+%}
 %{
 getTransform(robot,homeConfiguration(robot),"turntable","base_link")
 figure;
@@ -64,9 +67,37 @@ for i=1:overall_frames
     
 end
 %}
-show(robot, config , "Frames","off", "PreservePlot", false);
 %show(robot,a,"PreservePlot",true);
-camlight;
-lighting gouraud;
-material metal;
+%camlight;
+%lighting gouraud;
+%material metal;
+
+for angle=-pi:0.1:pi
+    i=1;
+    disp(angle);
+    config(5)=angle;
+    link_config=getTransform(robot,config,'ypr pitch');
+    flink_config=link_config(1:3,4);
+    scatter3(flink_config(1),flink_config(2),flink_config(3),'filled','r');
+    show(robot, config, "PreservePlot", false,'FastUpdate',true);
+    drawnow;
+end
+
+%{
+for i = 1:numel(robot.Bodies)
+    joint = robot.Bodies{i}.Joint;
+
+    if joint.Type ~= "fixed"
+        fprintf("Joint: %s\n", joint.Name);
+        fprintf("Type: %s\n", joint.Type);
+        fprintf("Limits: [%f , %f]\n", ...
+            joint.PositionLimits(1), ...
+            joint.PositionLimits(2));
+        fprintf("\n");
+    end
+end
+%}
+%viztree=interactiveRigidBodyTree(robot,"MarkerBodyName","link1");
+%showFigure(viztree);
+show(robot, config , "Frames","off", "PreservePlot", false);
 %camorbit(90,0);
