@@ -3,6 +3,11 @@ robot.DataFormat="row";
 
 showdetails(robot);
 config=homeConfiguration(robot);
+
+[isColliding, sepDist, witnessPts] = checkCollision(robot, config, ...
+    "SkippedSelfCollisions", "adjacent");
+
+disp(isColliding);
 %{
 disp(robot.BaseName);
 cyllinder_radius=0.05;
@@ -71,7 +76,7 @@ end
 %camlight;
 %lighting gouraud;
 %material metal;
-
+%{
 for angle=-pi:0.1:pi
     i=1;
     disp(angle);
@@ -82,7 +87,21 @@ for angle=-pi:0.1:pi
     show(robot, config, "PreservePlot", false,'FastUpdate',true);
     drawnow;
 end
+%}
+%{
+joint=3;
+valid=[];
+for angle=-pi:0.02:pi
+    config(joint)=angle;
+    isColliding=checkCollision(robot,config,"SkippedSelfCollisions","parent");
+    if ~isColliding
+        valid(end+1)=angle;
+    end
 
+end
+final_limits=[min(valid),max(valid)];
+disp(final_limits);
+%}
 %{
 for i = 1:numel(robot.Bodies)
     joint = robot.Bodies{i}.Joint;
@@ -99,5 +118,5 @@ end
 %}
 %viztree=interactiveRigidBodyTree(robot,"MarkerBodyName","link1");
 %showFigure(viztree);
-show(robot, config , "Frames","off", "PreservePlot", false);
+%show(robot, config , "Frames","off", "PreservePlot", false);
 %camorbit(90,0);
